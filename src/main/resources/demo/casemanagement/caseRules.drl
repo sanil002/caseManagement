@@ -1,0 +1,11 @@
+package demo.casemanagement;
+import demo.casemanagement.CaseResponce;
+import demo.casemanagement.Chargeback;
+
+rule "rule1"
+    when
+        $cb:Chargeback( $cb.getAmount() >= (10) && $cb.getReasonCode() == ("01"))
+    then
+        CaseResponce cr=new CaseResponce(1L,"CLOSE","CLOSE","RULE1");
+        insert(cr);
+end
